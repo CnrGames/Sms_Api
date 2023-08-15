@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="user_style.css" />
+    <link rel="stylesheet" href="user_dados.css" />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="up_styler.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>usuario</title>
+  </head>
+  <body>
+    <section id="sidebar">
+      <a class="brand">
+        <i class="bx bxs-smile"></i>
+        <span id="debug" class="text"> <%- natax%></span>
+      </a>
+      <ul class="side-menu top">
+        <li class="active">
+          <a class="btx" onclick="selectDoc('pc')">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text" style="transform: translateX(-10px);">Destino</span>
+          </a>
+        </li>
+        <li class="active">
+          <a class="btx" onclick="selectDoc('pgt')">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Transporte</span>
+          </a>
+        </li>
+        <li class="active">
+          <a class="btx" onclick="selectDoc('p')">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Preço</span>
+          </a>
+        </li>
+
+
+      </ul>
+    </section>
+    <section id="content">
+      <nav>
+        <i class="bx bx-menu"> </i>
+      </nav>
+      <input id="nps" style="display: none;" value="<%=  pss%>">
+      <div class="places">
+        <div class="place-1">
+          <span>Bilhetes Disponiveis</span>
+
+          <div id="idDoc" style="display: block; overflow: hidden;">
+            <div class="head">
+              <!-- <h3>Documentos</h3> --> 
+              <div class="psqArea">
+                <div>
+                  <form onsubmit=" return resp();"  action="/user" method="post" style="display: flex;flex-direction: row;
+                  padding-top: 3%;">
+                    <input style="display: none;"  id="pesquisa" name="pesq" type="search" autocomplete="off"></input>
+                     <!-- pill -->
+
+
+                         <!-- Destino -->
+                         <div class="formCont1" style="padding-left: 25%;display: flex;">
+                      
+                          <a class="lstyle" style="margin-right: 5%;font-size: 15px;font-weight: bolder;">Destino</a>
+                          <div>
+                               <input class="iStyle" type="text" name="dest" id="upt_autoc" 
+                                   onselectstart="return false;"onmousedown="return false;"
+                                   unselectable="on" readonly  autocomplete="off" style="width: 250px;" />
+ 
+                                   <div style="position: relative;width: 0; height: 0;padding-top: 3px; ">
+                                            
+                                       <div class="dropdown-content">
+ 
+                                        <a class="dest_esc">Todos</a>
+                                        <a class="dest_esc">Pemba</a>
+                                        <a class="dest_esc">Nampula</a>
+                                        <a class="dest_esc">Maputo</a>
+                                        <a class="dest_esc">Gaza</a>
+                                        <a class="dest_esc">Niassa</a>
+                                        <a class="dest_esc">Tete</a>
+                                        <a class="dest_esc">Matola</a>
+                                        <a class="dest_esc">Zambeze</a>
+                                        
+                                       </div> 
+                                      
+                                   </div>
+                                 </div>
+ 
+                       <!-- Fim prec -->
+                     </div>
+
+                      <!-- Carro -->
+                    <div class="formCont1" style="padding-left: 15%; display: none;" >
+                      <a class="lstyle" style="margin-right: 5%;font-size: 15px;font-weight: bolder; ">Autocarro</a>
+                      <div> 
+                         <input class="iStyle" type="text" name="autoType" id="upt_autoc" 
+                            onselectstart="return false;"onmousedown="return false;"
+                            unselectable="on" readonly  autocomplete="off" style="width: 250px;"/>
+
+                               <div style="position: relative;width: 0; height: 0;padding-top: 3px; ">
+                                        
+                                   <div class="dropdown-content">
+
+                                    
+                                       <a class="dest_esc">Todos</a>
+                                       <a class="dest_esc">Pequeno</a>
+                                       <a class="dest_esc">Medio</a>
+                                       <a class="dest_esc">Grande</a>
+                                       
+                                    
+                                   </div> 
+                                  
+                               </div>
+                          </div>
+
+                    </div>
+
+                 
+
+
+                     <!-- Preco -->
+                     <div class="formCont1" style="padding-left: 10%;display: none;">
+                      <div style="display: flex; font-size: 10px;flex-direction: row;">
+                        <a class="lstyle" style="width: 30px;font-size: 15px;font-weight: bolder;">De</a>
+                        <input name="de" type="number" autocomplete="off"/>
+                      </div>
+
+                      <div style="display: flex; flex-direction: row;">
+                        <a class="lstyle" style="width: 30px;font-size: 15px;font-weight: bolder;">Ate</a>
+                        <input name="ate" type="number" autocomplete="off"/>
+
+                      </div>
+                    
+                    </div>
+
+                  
+
+                    <input id="cod" name="categ" type="text" style="display: none" ></input>
+                    <input id='dpEmp0'name="emp" type="text" style="display: none" ></input>
+
+                    
+                    <input id = "tidx" name = 'tidx' style="display: none;" value="<%- tidx%>"/>
+
+                    <button class="btnC" style="margin-left: 6%;" >Pesquisar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr >
+                  <th>
+                    <a style="margin-left: 100% ;transform: translateX(-100px);"> Destino </a>
+                  </th>
+                  <th>
+                    <a style="margin-left: 600%"> Data </a>
+                  </th>
+                </tr>
+              </thead>
+              <div></div>
+            </table>
+            <div class="pasta">
+              <!-- Pesquisa!-->
+               
+              <div  id="telaVisa" style="width:0;height:0; display: none; ">
+                <!---->
+                <div style="
+                     width: 490px;
+                     height: 300px; 
+                     position: absolute;
+                     padding-left: 15%;
+                     transform: translateX(15%) translateY(-50px);
+                     border-radius: 15px;
+                     z-index: 3;                
+                     background-color: green;
+                     outline: solid;
+                     outline-offset: 10px;
+                     outline-style: solid;
+                     outline-color: black;
+                     border-style: solid; 
+                     border-width:5px;
+                     ">
+
+<div class="formRow styleGap"style="padding-top: 40px;" >
+                   
+  <div class="formCont fpadd" >
+      <p class="lstyle" id="chernoFilho" style="font-size: 20px;">Preco: XoXo Mzn</p>
+  </div>
+
+
+</div>
+
+            <div class="formRow styleGap" ">
+                   
+                     <div class="formCont fpadd" >
+                         <p class="lstyle" style="font-size: 20px;">Numero de acento</p>
+                          <input class="iStyle"  type="number" id ="upt_ac" name="durac"   autocomplete="off"/>
+                     </div>
+
+
+            </div>
+
+            <div class="formRow styleGap">
+                    
+                     <div class="formCont fpadd" style="padding-bottom: 15px;">
+                         <p class="lstyle" style="font-size: 20px;">Password da conta</p>
+                          <input class="iStyle"  type="password" id ="upt_pc" name="durac"   autocomplete="off"/>
+                     </div>
+                   
+                   
+                   
+            
+             </div>
+
+             <div class="formRow styleGap">
+                    
+              <div class="formCont " >
+                  <form onsubmit=" return comprar();" action="/book" method="post" >
+                    
+                    <input id="comNr" name="p" value="xoxo" style="display:none;">
+                    <input id="psbid" name="bId" value="xoxo" style="display:none;">
+                    <input id="comAC" name="acn" value="xoxo" style="display:none;">
+                   <button type="submit" onclick="comprar()" class="btnC" >  Comprar</button>
+   
+                  </form>
+              
+               </div>
+            
+               <div class="formCont" >
+               
+                <button onclick="cancelar()" class="btnC" > Cancelar</button>
+              
+               </div>
+            
+     
+      </div>
+
+
+                </div>
+
+                <div style="height: 1000px; 
+                position: absolute;
+                z-index: 1;
+                transform: translateY(-100px);
+                background-color: rgba(255, 0, 0, 0);
+                width: 1000px;"></div>
+
+              </div>
+
+              <!-- Lista de resul-->
+              <div class="item-cont">
+                <table>
+                  <div>
+                    <tbody>
+                       <% for (let x =0;x<docs.length;x++){%>
+                      <tr class="bcontent" value="<%= JSON.stringify(docs[x])%>">
+                        <!-- style="background-color: red;" -->
+                        <td>
+                          <a><%=  docs[x].destino %> </a>
+                        </td>
+                       <!--<td>01-10-2021</td>--> 
+                       <% let dt = new Date(docs[x].data)  %>
+                       <% let m= dt.getMonth()+1;    
+                          let d=dt.getDate();     
+                          let a=dt.getFullYear()%>
+                       <td> <span><%= (d+'/'+m+'/'+a) %></span> </td>
+                        <td>
+
+                         <!-- <form action="/book" method="post"> --> 
+                                 <input style="display: none;" name="bId" value="<%=  docs[x]._id %>" >
+                          
+                          <button class="btnC" type="submit" onclick="alertar(`<%= JSON.stringify(docs[x])%>`)"  >Comprar</button>
+                                                <!--  </form> -->
+
+                        </td>
+                      </tr>
+                      <% }%>
+                    </tbody>
+                  </div>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="place-2">
+          <div class="cenas">
+            <div class="p " id="ts" style="padding-left: 4%; padding-top: 8%;">
+              <h3 class="opc" >Hora de partida</h3>
+              <h3 class="opc" >Data de partida</h3>
+              <h3 class="opc" >Duracao da viagem</h3>
+              <h3 class="opc" >Tipo de transporte</h3>
+              <h3 class="opc" >Preco</h3>
+
+            </div>
+           <!-- 
+            <div class="download" onclick="abrir()">
+              <img  src="download.png" alt="" class="img" />
+              Guardar Documento
+            </div>
+-->
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="pai" id="pai">
+    
+      <div class="cont">
+        <form   action="/add/doc" method="post">
+        <div class="dIput">
+            <h5>Nome</h5>
+            <input name="titulo" autocomplete="off" >
+            <input id='dpEmp1'name="emp" type="text" style="display: none"></input>
+        </div>
+
+        <div class="dIput">
+          <h5>Data</h5>
+          
+          <input class="dt"name="data" placeholder="Data" type="date">
+          <input class="dt"name="dataFull" style="display:none;" type="date">
+      
+        </div>
+        <div>
+        <h5>Tipo de Documento</h5>
+
+          <div class="dropdown">
+            <input name="categ" id="docB" class="dropbtn" placeholder="Tipo" autocomplete="off" readonly  required></input>
+            <div class="dropdown-content">
+            <a class="escolha">Relatorio de Contas</a>
+            <a class="escolha">Processos Correntes</a>
+            <a class="escolha">Pagamento de Cmpostos</a>
+
+            <a class="escolha">Pendentes</a>
+            <a class="escolha">Preenchimento de Guias</a>
+            <a class="escolha">Adicionar Informacao / ver</a>
+            <input  id="cod12" style="display:none;"></input>
+            </div>
+          </div>
+        </div>
+
+      <div class="dIput">
+        <h5>Ficheiro</h5>
+        <input type="file" id="myFile" name="status" placeholder="Ficheiro">
+        <button  type="submit" onclick="fechar()">Carregar</button>
+
+   
+      </div>
+    </form>
+    <button onclick="fechar()">Fechar</button>
+      </div>encontra
+      </div> 
+    
+   
+
+  </div>
+
+    <script src="userDocSelect.js"></script>
+    <script src="upManager.js"></script>
+
+    <script >
+  
+      let empC = document.getElementById("dpEmp0");
+      let empC1 = document.getElementById("dpEmp1");
+      let nomeEmp = '';
+
+      
+
+      //console.log(dc);   
+
+         
+     
+      function parar(e){
+       e.preventDefault();
+}
+    fechar();
+    
+        
+         
+        </script>
+
+
+  </body>
+</html>
